@@ -25,4 +25,20 @@ export class BandController {
         }
 
     }
+
+    async details(request: Request, response: Response) {
+        try {
+            const id = request.query.id as string
+            const name = request.query.name as string
+
+            const bandBusiness = new BandBusiness()
+            const band = await bandBusiness.details(id, name)
+
+            return response.json(band)
+        } catch (error) {
+            return response
+                .status(error.code || 400)
+                .json({ message: error.sqlMessage || error.message })
+        }
+    }
 }

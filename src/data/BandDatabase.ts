@@ -35,4 +35,17 @@ export class BandDatabase extends BaseDatabase {
             throw new Error(error.sqlMessage || error.message)
         }
     }
+
+    public async getById(id: string) {
+        try {
+            const result = await this.getConnection()
+                .select()
+                .where({ id })
+                .into(BandDatabase.TABLE_NAME)
+
+            return result
+        } catch (error) {
+            throw new Error(error.sqlMessage || error.message)
+        }
+    }
 }
