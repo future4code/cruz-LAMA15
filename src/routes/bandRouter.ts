@@ -6,6 +6,7 @@ const bandRouter = express.Router()
 
 const bandController = new BandController();
 
+bandRouter.get('/details?', bandController.details)
 bandRouter.post('/register', ensureAdmin, bandController.register)
 
 export { bandRouter }
